@@ -1,5 +1,5 @@
 [workspace]
-members = ["wrapper-binary", "wrapper-driver"]
+members = ["plugin-binary", "plugin-driver"]
 resolver = "2"
 
 [workspace.package]

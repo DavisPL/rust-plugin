@@ -45,6 +45,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "plugin-binary"
+version = "0.1.0"
+
+[[package]]
+name = "plugin-driver"
+version = "0.1.0"
+dependencies = [
+ "log",
+ "simplelog",
+]
+
+[[package]]
 name = "powerfmt"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -239,15 +251,3 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
-
-[[package]]
-name = "wrapper-binary"
-version = "0.1.0"
-
-[[package]]
-name = "wrapper-driver"
-version = "0.1.0"
-dependencies = [
- "log",
- "simplelog",
-]

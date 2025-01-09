@@ -71,7 +71,7 @@ impl Args {
 }
 
 pub fn initialize_logging(args: &Args) {
-    let log_level = env::var("WRAPPER_LOG_LEVEL").unwrap_or_else(|_| "OFF".to_string());
+    let log_level = env::var("PLUGIN_LOG_LEVEL").unwrap_or_else(|_| "OFF".to_string());
 
     let level_filter = match log_level.as_str() {
         "DEBUG" => LevelFilter::Debug,
@@ -91,14 +91,14 @@ pub fn initialize_logging(args: &Args) {
     // Create logging directory if it doesn't already exist
     let log_dir = Path::new(root_dir).join(".log");
     fs::create_dir_all(&log_dir).expect(&format!(
-        "Failed to create wrapper logging directory at {}",
+        "Failed to create plugin logging directory at {}",
         log_dir.display()
     ));
 
     // Create logging file
     let path = log_dir.join(args.name_or("-")).with_extension("log");
     let log = File::create(&path).expect(&format!(
-        "Failed to create wrapper logging file at {}",
+        "Failed to create plugin logging file at {}",
         path.display()
     ));
 
@@ -110,5 +110,5 @@ pub fn initialize_logging(args: &Args) {
         .build();
 
     WriteLogger::init(simplelog::LevelFilter::Debug, config, log)
-        .expect("Failed to initialize wrapper logger");
+        .expect("Failed to initialize plugin logger");
 }

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cargo install --path wrapper-binary --force
-cargo install --path wrapper-driver --force
+cargo install --path plugin-binary --force
+cargo install --path plugin-driver --force

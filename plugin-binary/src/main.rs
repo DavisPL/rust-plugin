@@ -6,13 +6,12 @@ use std::{
 fn main() {
     let mut command = Command::new("cargo")
         .arg("check")
-        .env("RUSTC_WRAPPER", "wrapper-driver")
-        .env("WRAPPER_LOG_LEVEL", "DEBUG")
+        .env("RUSTC_WRAPPER", "plugin-driver")
+        .env("PLUGIN_LOG_LEVEL", "DEBUG")
         .stdout(Stdio::piped())
         .spawn()
         .unwrap();
 
-    // Handle stdout
     if let Some(stdout) = command.stdout.take() {
         let stdout_reader = BufReader::new(stdout);
         std::thread::spawn(move || {
@@ -27,6 +26,6 @@ fn main() {
     let status = command.wait().unwrap();
 
     if !status.success() {
-        eprintln!("Command failed with exit code: {:?}", status.code());
+        eprintln!("Failed with exit code: {:?}", status.code());
     }
 }
