@@ -1,8 +1,13 @@
-use std::{io::{BufRead, BufReader}, process::{Command, Stdio}};
+use std::{
+    io::{BufRead, BufReader},
+    process::{Command, Stdio},
+};
 
 fn main() {
-    let mut command = Command::new("cargo check")
+    let mut command = Command::new("cargo")
+        .arg("check")
         .env("RUSTC_WRAPPER", "wrapper-driver")
+        .env("WRAPPER_LOG_LEVEL", "DEBUG")
         .stdout(Stdio::piped())
         .spawn()
         .unwrap();
@@ -20,7 +25,7 @@ fn main() {
     }
 
     let status = command.wait().unwrap();
-    
+
     if !status.success() {
         eprintln!("Command failed with exit code: {:?}", status.code());
     }

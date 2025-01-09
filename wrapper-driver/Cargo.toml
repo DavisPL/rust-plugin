@@ -5,3 +5,7 @@ edition.workspace = true
 
 [package.metadata.rust-analyzer]
 rustc_private = true
+
+[dependencies]
+simplelog.workspace = true
+log.workspace = true
